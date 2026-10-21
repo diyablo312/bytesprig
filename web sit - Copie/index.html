@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f8f2">
+  <title>ByteSprig | Learn Python, one tiny win at a time</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,700;9..144,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="ByteSprig home">
+        <span class="brand-mark">B</span><span>bytesprig<span class="brand-period">.</span></span>
+      </a>
+
+      <nav class="main-nav">
+        <button class="nav-item active" data-view="path"><span class="nav-icon">⌂</span>Learning path</button>
+        <button class="nav-item" data-view="achievements"><span class="nav-icon">✳</span>Achievements</button>
+        <button class="nav-item hidden" id="admin-nav" data-view="admin"><span class="nav-icon">⚙</span>Administration</button>
+      </nav>
+
+      <div class="sidebar-course">
+        <div class="sidebar-label">YOUR COURSE</div>
+        <div class="course-pill"><span class="python-mark">Py</span><span>Python basics</span><span class="course-chevron">⌄</span></div>
+      </div>
+
+      <div class="sidebar-bottom">
+        <div class="daily-card">
+          <span class="daily-spark">✦</span>
+          <strong>Little steps add up.</strong>
+          <span>One lesson a day builds a real habit.</span>
+        </div>
+        <button class="profile-button" id="profile-button" aria-label="Change your programming experience level">
+          <span class="avatar" id="profile-avatar">A</span><span class="profile-copy"><strong id="learner-name">Learner</strong><small id="profile-level">Choose your level</small></span><span class="profile-menu">•••</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="main-content" id="home">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark">B</span><span>bytesprig<span class="brand-period">.</span></span></div>
+        <div class="course-title"><span class="python-mark">Py</span><span>Python for beginners</span><span class="title-chevron">⌄</span></div>
+        <div class="account-actions" id="account-actions">
+          <button class="account-link" id="sign-in-button" type="button">Sign in</button>
+          <button class="account-create" id="create-account-button" type="button">Create account</button>
+        </div>
+        <div class="account-actions hidden" id="signed-in-actions">
+          <span class="signed-in-label" id="signed-in-label"></span>
+          <button class="account-link" id="sign-out-button" type="button">Sign out</button>
+        </div>
+        <div class="top-stats" aria-label="Your learning stats">
+          <div class="stat streak"><span class="stat-icon">♨</span><span id="streak-count">0</span><span class="stat-name">day streak</span></div>
+          <div class="stat xp"><span class="stat-icon">✦</span><span id="xp-count">0</span><span class="stat-name">XP</span></div>
+          <div class="stat hearts"><span class="stat-icon">♥</span><span id="heart-count">5</span></div>
+        </div>
+      </header>
+
+      <section class="view-panel" id="path-view">
+        <div class="welcome-row">
+          <div>
+            <p class="eyebrow">YOUR LEARNING PATH <span class="eyebrow-line"></span></p>
+            <h1>Small steps.<br><span>Real Python skills.</span></h1>
+            <p class="welcome-copy">A few minutes a day is all it takes to get started.</p>
+          </div>
+          <div class="level-stamp"><span class="stamp-sun">✳</span><span>YOUR LEVEL</span><strong id="level-number">01</strong><small>Curious coder</small></div>
+        </div>
+
+        <section class="daily-focus" aria-label="Continue learning">
+          <div class="focus-icon" aria-hidden="true"><span>print</span><b>( )</b></div>
+          <div class="focus-copy"><span class="focus-label">UP NEXT · 5 MIN</span><h2 id="next-lesson-title">Your first Python line</h2><p id="next-lesson-description">Meet print() and make Python speak.</p></div>
+          <button class="start-button" id="continue-button"><span>Start lesson</span><span aria-hidden="true">↗</span></button>
+          <div class="focus-decoration" aria-hidden="true">{ }</div>
+        </section>
+
+        <div class="lesson-path" id="lesson-path" aria-label="Python lesson path"></div>
+        <footer class="path-footer"><span class="footer-dot"></span>Keep your streak going. Your next small win is waiting.</footer>
+      </section>
+
+      <section class="view-panel hidden" id="achievements-view">
+        <div class="achievement-header"><p class="eyebrow">YOUR MILESTONES <span class="eyebrow-line"></span></p><h1>Look how far<br><span>you've come.</span></h1><p class="welcome-copy">Every little win counts. Keep collecting them.</p></div>
+        <div class="achievement-summary"><span class="summary-icon">✳</span><div><strong id="achievement-count">0 badges earned</strong><p>Complete lessons to unlock new badges.</p></div><span class="summary-xp"><b id="achievement-xp">0</b><small>total XP</small></span></div>
+        <div class="badge-grid" id="badge-grid"></div>
+        <button class="back-to-path" data-view="path">← Back to your path</button>
+      </section>
+
+      <section class="view-panel hidden" id="admin-view">
+        <div class="admin-header">
+          <div><p class="eyebrow">BYTESPRIG CONTROL ROOM <span class="eyebrow-line"></span></p><h1>Learner<br><span>administration.</span></h1><p class="welcome-copy">Account list and course progress.</p></div>
+          <button class="admin-refresh" id="admin-refresh" type="button" aria-label="Refresh learner list" title="Refresh learner list">↻</button>
+        </div>
+        <div class="admin-stats">
+          <article class="admin-summary"><span class="summary-icon">♙</span><div><strong id="admin-user-count">—</strong><p>Registered accounts</p></div></article>
+          <article class="admin-summary"><span class="summary-icon">◷</span><div><strong id="admin-active-count">—</strong><p>Signed in during the last 24 hours</p></div></article>
+        </div>
+        <section class="hosting-section" aria-labelledby="hosting-title">
+          <div class="hosting-heading"><div><p class="unit-kicker">SERVICE STATUS</p><h2 id="hosting-title">Hosting overview</h2></div><span class="hosting-live"><span></span>LIVE</span></div>
+          <div class="hosting-grid">
+            <article class="hosting-item"><span>Environment</span><strong id="hosting-deployment">Loading</strong></article>
+            <article class="hosting-item"><span>Runtime</span><strong id="hosting-runtime">Loading</strong></article>
+            <article class="hosting-item"><span>Database</span><strong id="hosting-database">Loading</strong></article>
+            <article class="hosting-item"><span>Database status</span><strong id="hosting-database-status">Loading</strong></article>
+            <article class="hosting-item"><span>App uptime</span><strong id="hosting-uptime">Loading</strong></article>
+            <article class="hosting-item"><span>Database file</span><strong id="hosting-storage">Loading</strong></article>
+          </div>
+          <p class="hosting-note">Private credentials and provider secrets are intentionally not shown.</p>
+        </section>
+        <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Learner</th><th>Role</th><th>Lessons</th><th>XP</th><th>Last sign-in</th></tr></thead><tbody id="admin-user-rows"></tbody></table></div>
+        <p class="admin-message" id="admin-message" role="status" aria-live="polite"></p>
+        <button class="back-to-path" data-view="path">← Back to learning path</button>
+      </section>
+    </main>
+  </div>
+
+  <div class="lesson-overlay hidden" id="lesson-overlay" role="presentation">
+    <section class="lesson-dialog" role="dialog" aria-modal="true" aria-labelledby="lesson-dialog-title">
+      <header class="lesson-topbar"><button class="icon-button" id="close-lesson" aria-label="Close lesson">×</button><div class="lesson-progress-track"><span id="lesson-progress-fill"></span></div><div class="lesson-hearts"><span>♥</span><span id="lesson-heart-count">5</span></div></header>
+      <div class="lesson-content" id="lesson-content"></div>
+      <footer class="answer-footer" id="answer-footer"><button class="check-button" id="check-answer" disabled>Check answer <span>↗</span></button></footer>
+    </section>
+  </div>
+
+  <div class="onboarding-overlay hidden" id="onboarding-overlay" role="presentation">
+    <section class="onboarding-dialog" role="dialog" aria-modal="true" aria-labelledby="onboarding-title">
+      <div class="onboarding-brand"><span class="brand-mark">B</span><span>bytesprig<span class="brand-period">.</span></span></div>
+      <p class="eyebrow">LET'S MAKE THIS YOURS <span class="eyebrow-line"></span></p>
+      <h2 id="onboarding-title">What's your programming experience?</h2>
+      <p class="onboarding-copy">We'll remember your starting point for your learning journey.</p>
+      <div class="experience-options" role="group" aria-label="Choose your programming experience">
+        <button class="experience-choice" type="button" data-level="Beginner" aria-pressed="false"><span class="experience-icon">01</span><span><strong>I'm new to programming</strong><small>Start with the very basics</small></span><span class="choice-indicator"></span></button>
+        <button class="experience-choice" type="button" data-level="Some experience" aria-pressed="false"><span class="experience-icon">02</span><span><strong>I've tried a little</strong><small>I know a few coding ideas</small></span><span class="choice-indicator"></span></button>
+        <button class="experience-choice" type="button" data-level="Experienced" aria-pressed="false"><span class="experience-icon">03</span><span><strong>I can write small programs</strong><small>I'm comfortable with the basics</small></span><span class="choice-indicator"></span></button>
+      </div>
+      <button class="onboarding-continue" id="onboarding-continue" type="button" disabled>Start learning <span>↗</span></button>
+    </section>
+  </div>
+
+  <div class="auth-overlay hidden" id="auth-overlay" role="presentation">
+    <section class="auth-dialog" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+      <button class="auth-close" id="auth-close" type="button" aria-label="Close account window">×</button>
+      <div class="onboarding-brand"><span class="brand-mark">B</span><span>bytesprig<span class="brand-period">.</span></span></div>
+      <div class="auth-tabs" role="tablist" aria-label="Account options">
+        <button class="auth-tab active" id="tab-sign-in" type="button" role="tab" aria-selected="true">Sign in</button>
+        <button class="auth-tab" id="tab-create" type="button" role="tab" aria-selected="false">Create account</button>
+      </div>
+      <h2 id="auth-title">Welcome back</h2>
+      <p class="auth-copy" id="auth-copy">Sign in to continue your saved learning path.</p>
+      <form id="auth-form">
+        <label class="auth-field hidden" id="name-field">Your name<input id="auth-name" name="name" type="text" autocomplete="name" minlength="2" placeholder="Sam learner"></label>
+        <label class="auth-field">Email address<input id="auth-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com"></label>
+        <label class="auth-field">Password<input id="auth-password" name="password" type="password" autocomplete="current-password" minlength="8" required placeholder="At least 8 characters"></label>
+        <p class="auth-message" id="auth-message" role="status" aria-live="polite"></p>
+        <button class="onboarding-continue" id="auth-submit" type="submit">Sign in <span>↗</span></button>
+      </form>
+      <p class="local-account-note">Your account is stored by the ByteSprig server on this computer. Keep the server running to use the app. This local version does not sync to other devices.</p>
+    </section>
+  </div>
+</body>
+</html>
